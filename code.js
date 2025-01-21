@@ -183,7 +183,7 @@
 
 
     const panelHtml = `
-    <div id="linkOpenerPanel" style="position: fixed; top: 10px; right: 10px; background: #f8f9fa; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; width: 300px; z-index: 10000; padding: 20px; font-family: Arial, sans-serif;">
+    <div id="linkOpenerPanel" style="position: fixed; top: 10px; right: 10px; background: #f8f9fa; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; width: 300px; z-index: 10000000; padding: 20px; font-family: Arial, sans-serif;">
         <!-- Close Button -->
         <button id="closeButton" style="background: transparent; border: none; position: absolute; top: 10px; right: 10px; font-size: 20px; color: #343a40; cursor: pointer;">&times;</button>
 
