@@ -25,7 +25,7 @@
         const state = localStorage.getItem(storageKey);
         return state
             ? JSON.parse(state)
-            : { isRunning: false, pagesVisited: 0, startTime: null, elapsedPausedTime: 0, lastOpenedLink: null, scrollSpeed: 'slow', baseUrl: window.location.hostname };
+        : { isRunning: false, pagesVisited: 0, startTime: null, elapsedPausedTime: 0, lastOpenedLink: null, scrollSpeed: 'slow', baseUrl: null }; // Başlangıçta baseUrl null olabilir
     }
     function clearState() {
         localStorage.removeItem(storageKey);
@@ -49,8 +49,8 @@
     function extractLinks() {
         return $('a[href]')
             .map(function () {
-                return $(this).attr('href');
-            })
+            return $(this).attr('href');
+        })
             .get()
             .filter((href) => href && !href.startsWith("#") && !href.startsWith("javascript"));
     }
@@ -110,6 +110,9 @@
         if (!state.startTime) {
             state.startTime = Date.now();
         }
+        if (!state.baseUrl) {
+            state.baseUrl = window.location.hostname;
+        }
 
         saveState(state);
         updatePanel();
@@ -127,14 +130,14 @@
         enableScrollSpeed();  // Re-enable scroll speed selector after process
     }
 
-   function resetProcess() {
-    clearState();
-    const state = loadState();
-    state.scrollSpeed = 'fast';  // Scroll speed'i varsayılan olarak 'fast' olarak ayarla
-    saveState(state);
-    $('#scrollSpeed').val('fast');  // Dropdown menüsünü 'fast' olarak ayarla
-    updatePanel();
-}
+    function resetProcess() {
+        clearState();
+        const state = loadState();
+        state.scrollSpeed = 'fast';  // Scroll speed'i varsayılan olarak 'fast' olarak ayarla
+        saveState(state);
+        $('#scrollSpeed').val('fast');  // Dropdown menüsünü 'fast' olarak ayarla
+        updatePanel();
+    }
 
 
     // Format elapsed time
@@ -168,7 +171,7 @@
             <p>Geçen Süre: <strong>${formatElapsedTime(elapsedTime)}</strong></p>
         `);
 
-                $('#scrollSpeed').prop('disabled', state.isRunning);
+        $('#scrollSpeed').prop('disabled', state.isRunning);
 
     }
 
@@ -228,7 +231,7 @@
         saveState(state);
     });
 
-     $('#closeButton').on('click', function() {
+    $('#closeButton').on('click', function() {
         $('#linkOpenerPanel').hide();  // Hide the panel when "X" is clicked
     });
 
