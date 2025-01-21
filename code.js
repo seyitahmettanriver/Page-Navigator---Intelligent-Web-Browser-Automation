@@ -25,7 +25,7 @@
         const state = localStorage.getItem(storageKey);
         return state
             ? JSON.parse(state)
-            : { isRunning: false, pagesVisited: 0, startTime: null, elapsedPausedTime: 0, lastOpenedLink: null, scrollSpeed: 'slow' };
+            : { isRunning: false, pagesVisited: 0, startTime: null, elapsedPausedTime: 0, lastOpenedLink: null, scrollSpeed: 'slow', baseUrl: window.location.hostname };
     }
     function clearState() {
         localStorage.removeItem(storageKey);
