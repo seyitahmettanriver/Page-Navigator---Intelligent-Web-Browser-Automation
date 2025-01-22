@@ -75,8 +75,7 @@
         const filteredLinks = filterLinksByDomain(links, state.baseUrl);
 
         if (filteredLinks.length === 0) {
-            alert("Sayfada geçerli bir bağlantı bulunamadı!");
-            stopProcess();
+            window.location.href = state.baseUrl;
             return;
         }
 
